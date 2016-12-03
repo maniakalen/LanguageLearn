@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment"
         android:id="@+id/alphabet_letter"
-        android:textSize="564sp"
+        android:textSize="512sp"
         android:gravity="center" />
 
 </FrameLayout>
