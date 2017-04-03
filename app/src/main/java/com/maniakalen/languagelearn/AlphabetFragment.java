@@ -1,12 +1,15 @@
 package com.maniakalen.languagelearn;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -24,7 +27,7 @@ public class AlphabetFragment extends Fragment {
     private static final String ARG_PARAM1 = "letter";
 
     // TODO: Rename and change types of parameters
-    private String mLetter;
+    private String[] mLetterString;
 
     private OnFragmentInteractionListener mListener;
 
@@ -52,20 +55,53 @@ public class AlphabetFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mLetter = getArguments().getString(ARG_PARAM1);
+            String str = getArguments().getString(ARG_PARAM1);
+            if (str != null) {
+                mLetterString = str.split("\\|");
+            }
         }
     }
-
+    public void loadBitmap(int resId, ImageView imageView) {
+        if (BitmapWorkerTask.AsyncDrawable.cancelPotentialWork(resId, imageView)) {
+            final BitmapWorkerTask task = new BitmapWorkerTask(imageView, getResources());
+            final BitmapWorkerTask.AsyncDrawable asyncDrawable =
+                    new BitmapWorkerTask.AsyncDrawable(getResources(), BitmapFactory.decodeResource(null, resId), task);
+            imageView.setImageDrawable(asyncDrawable);
+            task.execute(resId);
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_alphabet, container, false);
+
         TextView text = (TextView)v.findViewById(R.id.alphabet_letter);
-        text.setText(this.mLetter);
+        text.setText(getLetter());
+
+        TextView word = (TextView)v.findViewById(R.id.alphabet_word);
+        word.setText(getWord());
+
+        ImageView img = (ImageView)v.findViewById(R.id.alphafoto);
+        loadBitmap(getImageId(), img);
+
         return v;
     }
 
+    private String getLetter()
+    {
+        return this.mLetterString.length > 0?this.mLetterString[0]:"";
+    }
+
+    private String getWord()
+    {
+        return this.mLetterString.length>1?this.mLetterString[1]:"";
+    }
+
+    private int getImageId()
+    {
+        return this.mLetterString.length>2?getResources().getIdentifier(this.mLetterString[2], "drawable", ((Activity)mListener).getPackageName()):0;
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

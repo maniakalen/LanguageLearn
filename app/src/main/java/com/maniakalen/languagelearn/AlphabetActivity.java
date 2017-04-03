@@ -1,6 +1,7 @@
 package com.maniakalen.languagelearn;
 
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 public class AlphabetActivity extends AppCompatActivity implements AlphabetFragment.OnFragmentInteractionListener {
 

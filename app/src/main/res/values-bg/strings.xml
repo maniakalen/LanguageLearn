@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Учи език</string>
-    <string name="hello_blank_fragment"></string>
+    <string name="hello_blank_fragment"> </string>
+    <string name="Alphabet">Азбуката</string>
     <string-array name="alphabet">
-        <item>А</item>
-        <item>Б</item>
+        <item>А|Автобус|autobus</item>
+        <item>Б|Барабан|drums</item>
         <item>В</item>
         <item>Г</item>
         <item>Д</item>
