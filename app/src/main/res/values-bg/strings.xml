@@ -6,11 +6,11 @@
     <string-array name="alphabet">
         <item>А|Автобус|autobus</item>
         <item>Б|Барабан|drums</item>
-        <item>В</item>
-        <item>Г</item>
-        <item>Д</item>
-        <item>Е</item>
-        <item>Ж</item>
+        <item>В|Влак|train</item>
+        <item>Г|Гума|guma</item>
+        <item>Д|Дърво|dyrvo</item>
+        <item>Е|Елха|christmastree</item>
+        <item>Ж|Жираф|jiraf</item>
         <item>З</item>
         <item>И</item>
         <item>Й</item>

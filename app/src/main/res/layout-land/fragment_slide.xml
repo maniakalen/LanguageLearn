@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
      android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.maniakalen.languagelearn.AlphabetFragment"
+    android:layout_height="match_parent" tools:context="com.maniakalen.languagelearn.SlideFragment"
     android:orientation="horizontal"
     android:gravity="center">
 
@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/hello_blank_fragment"
-            android:id="@+id/alphabet_letter"
+            android:id="@+id/slide_char"
             android:textSize="296sp"
             android:gravity="center_vertical"
             android:layout_marginRight="16sp"
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hello_blank_fragment"
-                android:id="@+id/alphabet_word"
+                android:id="@+id/slide_word"
                 android:textSize="36sp"
                 android:gravity="center_vertical"
                 />
@@ -35,7 +35,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/alphafoto"
+                android:id="@+id/slide_pic"
                 android:contentDescription="@string/itemphoto"
                 android:background="@android:color/transparent"
                 android:layout_marginTop="36sp"

@@ -3,13 +3,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.maniakalen.languagelearn.AlphabetFragment">
+    tools:context="com.maniakalen.languagelearn.SlideFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment"
-        android:id="@+id/alphabet_letter"
+        android:id="@+id/slide_char"
         android:textSize="296sp"
         android:gravity="center_horizontal"
          />
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment"
-        android:id="@+id/alphabet_word"
+        android:id="@+id/slide_word"
         android:textSize="36sp"
         android:gravity="center_horizontal"
         />
@@ -26,7 +26,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/alphafoto"
+        android:id="@+id/slide_pic"
         android:contentDescription="@string/itemphoto"
         android:background="@android:color/transparent"
         android:layout_marginTop="36sp"

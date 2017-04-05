@@ -1,26 +1,19 @@
 package com.maniakalen.languagelearn;
 
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.ImageView;
 
-public class AlphabetActivity extends AppCompatActivity implements AlphabetFragment.OnFragmentInteractionListener {
+public class SlideActivity extends AppCompatActivity implements SlideFragment.OnFragmentInteractionListener {
 
-
+    public static final String RES_EXTRA_NAME = "resource_id";
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
      * and next wizard steps.
@@ -36,11 +29,12 @@ public class AlphabetActivity extends AppCompatActivity implements AlphabetFragm
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_slide);
 
+        int resource = getIntent().getIntExtra(SlideActivity.RES_EXTRA_NAME,0);
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), resource);
         mPager.setAdapter(mPagerAdapter);
 
     }
@@ -74,22 +68,30 @@ public class AlphabetActivity extends AppCompatActivity implements AlphabetFragm
      * sequence.
      */
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+        private int resId;
+        public ScreenSlidePagerAdapter(FragmentManager fm, int resourceId) {
             super(fm);
+            resId = resourceId;
         }
 
         @Override
         public Fragment getItem(int position) {
+            if (resId == 0) {
+                throw new Resources.NotFoundException("Resource not found");
+            }
             Resources res = getResources();
-            String[] alphabet = res.getStringArray(R.array.alphabet);
-            return AlphabetFragment.newInstance(alphabet[position]);
+            String[] items = res.getStringArray(resId);
+            return SlideFragment.newInstance(items[position]);
         }
 
         @Override
         public int getCount() {
+            if (resId == 0) {
+                throw new Resources.NotFoundException("Resource not found");
+            }
             Resources res = getResources();
-            String[] alphabet = res.getStringArray(R.array.alphabet);
-            return alphabet.length;
+            String[] items = res.getStringArray(resId);
+            return items.length;
         }
     }
 

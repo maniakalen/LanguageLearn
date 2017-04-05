@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
@@ -10,10 +10,19 @@
 <Button
     android:id="@+id/AlphabetButton"
     android:layout_gravity="center"
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:text="@string/Alphabet"
+    android:layout_height="96sp"
+    android:layout_width="96sp"
     android:onClick="runAlphabet"
+    android:background="@mipmap/ic_launcher"
     />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/NumbersButton"
+        android:layout_gravity="center"
+        android:layout_height="96sp"
+        android:layout_width="96sp"
+        android:onClick="runNumbers"
+        android:background="@mipmap/ic_launcher"
+        />
+
+</GridLayout>

@@ -16,22 +16,22 @@ import android.widget.TextView;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AlphabetFragment.OnFragmentInteractionListener} interface
+ * {@link SlideFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AlphabetFragment#newInstance} factory method to
+ * Use the {@link SlideFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AlphabetFragment extends Fragment {
+public class SlideFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "letter";
 
     // TODO: Rename and change types of parameters
-    private String[] mLetterString;
+    private String[] mStrings;
 
     private OnFragmentInteractionListener mListener;
 
-    public AlphabetFragment() {
+    public SlideFragment() {
         // Required empty public constructor
     }
 
@@ -43,8 +43,8 @@ public class AlphabetFragment extends Fragment {
      * @return A new instance of fragment AlphabetFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AlphabetFragment newInstance(String param1) {
-        AlphabetFragment fragment = new AlphabetFragment();
+    public static SlideFragment newInstance(String param1) {
+        SlideFragment fragment = new SlideFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
@@ -57,7 +57,7 @@ public class AlphabetFragment extends Fragment {
         if (getArguments() != null) {
             String str = getArguments().getString(ARG_PARAM1);
             if (str != null) {
-                mLetterString = str.split("\\|");
+                mStrings = str.split("\\|");
             }
         }
     }
@@ -74,33 +74,33 @@ public class AlphabetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_alphabet, container, false);
+        View v = inflater.inflate(R.layout.fragment_slide, container, false);
 
-        TextView text = (TextView)v.findViewById(R.id.alphabet_letter);
-        text.setText(getLetter());
+        TextView text = (TextView)v.findViewById(R.id.slide_char);
+        text.setText(getChar());
 
-        TextView word = (TextView)v.findViewById(R.id.alphabet_word);
+        TextView word = (TextView)v.findViewById(R.id.slide_word);
         word.setText(getWord());
 
-        ImageView img = (ImageView)v.findViewById(R.id.alphafoto);
+        ImageView img = (ImageView)v.findViewById(R.id.slide_pic);
         loadBitmap(getImageId(), img);
 
         return v;
     }
 
-    private String getLetter()
+    private String getChar()
     {
-        return this.mLetterString.length > 0?this.mLetterString[0]:"";
+        return this.mStrings.length > 0?this.mStrings[0]:"";
     }
 
     private String getWord()
     {
-        return this.mLetterString.length>1?this.mLetterString[1]:"";
+        return this.mStrings.length>1?this.mStrings[1]:"";
     }
 
     private int getImageId()
     {
-        return this.mLetterString.length>2?getResources().getIdentifier(this.mLetterString[2], "drawable", ((Activity)mListener).getPackageName()):0;
+        return this.mStrings.length>2?getResources().getIdentifier(this.mStrings[2], "drawable", ((Activity)mListener).getPackageName()):0;
     }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

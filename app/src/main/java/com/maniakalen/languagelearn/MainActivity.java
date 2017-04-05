@@ -2,11 +2,7 @@ package com.maniakalen.languagelearn;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -27,7 +23,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void runAlphabet(View view) {
-        Intent intent = new Intent(this, AlphabetActivity.class);
+        runSlideActivity(R.array.alphabet);
+    }
+    public void runNumbers(View view) { runSlideActivity(R.array.numbers); }
+    private void runSlideActivity(int resourceId) {
+        Intent intent = new Intent(this, SlideActivity.class);
+        intent.putExtra(SlideActivity.RES_EXTRA_NAME, resourceId);
         startActivity(intent);
     }
 }
