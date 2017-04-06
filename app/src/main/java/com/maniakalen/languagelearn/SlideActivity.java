@@ -2,6 +2,8 @@ package com.maniakalen.languagelearn;
 
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -9,7 +11,10 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
+
+import java.util.Locale;
 
 public class SlideActivity extends AppCompatActivity implements SlideFragment.OnFragmentInteractionListener {
 
@@ -25,7 +30,7 @@ public class SlideActivity extends AppCompatActivity implements SlideFragment.On
      */
     private PagerAdapter mPagerAdapter;
 
-
+    TextToSpeech tts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +42,23 @@ public class SlideActivity extends AppCompatActivity implements SlideFragment.On
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), resource);
         mPager.setAdapter(mPagerAdapter);
 
+        tts=new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+
+            @Override
+            public void onInit(int status) {
+                // TODO Auto-generated method stub
+                if(status == TextToSpeech.SUCCESS){
+                    int result=tts.setLanguage(Locale.US);
+                    if(result==TextToSpeech.LANG_MISSING_DATA ||
+                            result==TextToSpeech.LANG_NOT_SUPPORTED){
+                        Log.e("error", "This Language is not supported");
+                    }
+                }
+                else
+                    Log.e("error", "Initilization Failed!");
+            }
+        });
+        tts.setSpeechRate(0.7f);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,6 +68,18 @@ public class SlideActivity extends AppCompatActivity implements SlideFragment.On
 
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    public void speak(String text){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+        }else{
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        }
+    }
     /*@Override
     public void onBackPressed() {
         if (mPager.getCurrentItem() == 0) {
@@ -57,11 +91,6 @@ public class SlideActivity extends AppCompatActivity implements SlideFragment.On
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
     }*/
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 
     /**
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in

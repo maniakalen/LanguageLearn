@@ -2,15 +2,21 @@ package com.maniakalen.languagelearn;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 
 /**
@@ -78,9 +84,17 @@ public class SlideFragment extends Fragment {
 
         TextView text = (TextView)v.findViewById(R.id.slide_char);
         text.setText(getChar());
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                speak((String)((TextView)v).getText());
+            }
+        };
+        text.setOnClickListener(listener);
 
         TextView word = (TextView)v.findViewById(R.id.slide_word);
         word.setText(getWord());
+        word.setOnClickListener(listener);
 
         ImageView img = (ImageView)v.findViewById(R.id.slide_pic);
         loadBitmap(getImageId(), img);
@@ -102,13 +116,10 @@ public class SlideFragment extends Fragment {
     {
         return this.mStrings.length>2?getResources().getIdentifier(this.mStrings[2], "drawable", ((Activity)mListener).getPackageName()):0;
     }
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
+    public void speak(String text){
+        mListener.speak(text);
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -139,5 +150,6 @@ public class SlideFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+        void speak(String text);
     }
 }
