@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.maniakalen.languagelearn.SlideFragment">
+    tools:context="com.maniakalen.languagelearn.SlideFragment"
+    >
 
     <TextView
         android:layout_width="match_parent"
@@ -12,6 +13,8 @@
         android:id="@+id/slide_char"
         android:textSize="296sp"
         android:gravity="center_horizontal"
+        android:textColor="@color/colorPrimary"
+        android:background="@android:color/transparent"
          />
 
     <TextView
@@ -21,6 +24,8 @@
         android:id="@+id/slide_word"
         android:textSize="36sp"
         android:gravity="center_horizontal"
+        android:textColor="@color/textColorSecondary"
+        android:background="@android:color/transparent"
         />
 
     <ImageView
