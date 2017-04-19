@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16sp"
+    android:orientation="horizontal"
+    android:background="@android:color/transparent"
+    android:rowCount="10"
+    android:layout_gravity="center_horizontal"
+
     >
 
-<Button
-    android:id="@+id/AlphabetButton"
-    android:layout_gravity="center"
-    android:layout_height="96sp"
-    android:layout_width="96sp"
-    android:onClick="runAlphabet"
-    android:background="@mipmap/ic_launcher"
-    />
+    <Button
+        android:id="@+id/AlphabetButton"
+        android:layout_gravity="center"
+        android:layout_height="96sp"
+        android:layout_width="96sp"
+        android:onClick="runAlphabet"
+        android:background="@drawable/alphabet"
+        />
 
     <Button
         android:id="@+id/NumbersButton"
@@ -22,7 +25,8 @@
         android:layout_height="96sp"
         android:layout_width="96sp"
         android:onClick="runNumbers"
-        android:background="@mipmap/ic_launcher"
+        android:background="@drawable/numbers"
         />
+
 
 </GridLayout>
